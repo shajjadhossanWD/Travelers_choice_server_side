@@ -22,11 +22,24 @@ async function run() {
         const database = client.db('tourism_web');
         const tourOffers = database.collection('tourOffers');
 
+         const databaseTwo = client.db('tourSingleItem');
+         const singleItemData= databaseTwo.collection('singleItemData');
+        
+        // get method ----------------------------- 
         app.get("/tourOffers", async(req, res)=>{
             const cursor = tourOffers.find({});
             const allOffers = await cursor.toArray();
             res.send(allOffers);
             console.log(allOffers)
+        })
+
+        //Post method -----------------------------
+        app.post("/addUser", async(req, res) => {
+          console.log('hit the post ')
+          console.log(req.body);
+           const result = await singleItemData.insertOne(req.body);
+           console.log(result);
+           res.send("post is running")
         })
 
 
@@ -38,7 +51,7 @@ async function run() {
   run().catch(console.dir);
 
 app.get("/", (req, res) =>{
-    res.send("this is my second nodejs")
+    res.send("this is my nodejs")
 });
 
 app.listen(port, ()=>{
