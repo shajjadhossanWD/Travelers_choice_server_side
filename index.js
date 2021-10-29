@@ -35,11 +35,8 @@ async function run() {
 
         //Post method -----------------------------
         app.post("/addUser", async(req, res) => {
-          console.log('hit the post ')
-          console.log(req.body);
            const result = await singleItemData.insertOne(req.body);
-           console.log(result);
-           res.send("post is running")
+           res.json(result)
         })
 
 
