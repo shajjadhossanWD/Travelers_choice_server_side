@@ -52,6 +52,7 @@ async function run() {
            const getItem = {_id: ObjectId(id)}
            const deleteItem = await singleItemData.deleteOne(getItem)
            console.log(deleteItem);
+           res.send(deleteItem.acknowledged)  //deletedCount
         })
 
 
