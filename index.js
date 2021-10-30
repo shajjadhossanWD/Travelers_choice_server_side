@@ -39,6 +39,13 @@ async function run() {
           res.json(addOffers);
         })
 
+        //manage all order ------------------------
+        app.get("/chooseOffers", async(req, res)=>{
+          const cursor = singleItemData.find({});
+          const allData = await cursor.toArray();
+          res.send(allData);
+        })
+
         // my orders get method--------------------
         app.get("/chooseOffers/:email", async(req, res)=>{
           const email = req.params.email;
