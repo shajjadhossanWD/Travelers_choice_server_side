@@ -33,6 +33,12 @@ async function run() {
             console.log(allOffers)
         })
 
+        //post method in main offers section......... 
+        app.post("/tourOffers", async(req,res) =>{
+          const addOffers = await tourOffers.insertOne(req.body);
+          res.json(addOffers);
+        })
+
         // my orders get method--------------------
         app.get("/chooseOffers", async(req, res)=>{
           const data = singleItemData.find({});
