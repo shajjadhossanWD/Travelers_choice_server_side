@@ -40,8 +40,9 @@ async function run() {
         })
 
         // my orders get method--------------------
-        app.get("/chooseOffers", async(req, res)=>{
-          const data = singleItemData.find({});
+        app.get("/chooseOffers/:email", async(req, res)=>{
+          const email = req.params.email;
+          const data = singleItemData.find({email: email});
           const allChooseOffers = await data.toArray();
           res.send(allChooseOffers);
         })
