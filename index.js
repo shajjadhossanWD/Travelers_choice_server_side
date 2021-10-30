@@ -33,8 +33,15 @@ async function run() {
             console.log(allOffers)
         })
 
+        // my orders get method--------------------
+        app.get("/chooseOffers", async(req, res)=>{
+          const data = singleItemData.find({});
+          const allChooseOffers = await data.toArray();
+          res.send(allChooseOffers);
+        })
+
         //Post method -----------------------------
-        app.post("/addUser", async(req, res) => {
+        app.post("/chooseOffers", async(req, res) => {
            const result = await singleItemData.insertOne(req.body);
            res.json(result)
         })
