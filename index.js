@@ -63,9 +63,9 @@ async function run() {
         })
 
        // put method--------------------------------
-         app.put("/chooseOffers/:email", async(req, res) => {
-         const email = req.params.email;
-         const query = {email:email};
+         app.put("/chooseOffers/:id", async(req, res) => {
+         const id = req.params.id;
+         const query = {_id:ObjectId(id)};
          const updateDoc = {
            $set: {
              status: 1
