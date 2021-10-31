@@ -56,9 +56,25 @@ async function run() {
 
         //Post method -----------------------------
         app.post("/chooseOffers", async(req, res) => {
-           const result = await singleItemData.insertOne(req.body);
+           const data = req.body;
+           data.status = 0
+           const result = await singleItemData.insertOne(data);
            res.json(result)
         })
+
+       // put method--------------------------------
+         app.put("/chooseOffers/:email", async(req, res) => {
+         const email = req.params.email;
+         const query = {email:email};
+         const updateDoc = {
+           $set: {
+             status: 1
+           },
+         };
+          const options = { upsert: true };
+          const result = await singleItemData.updateOne(query, updateDoc, options );
+          res.json(result);
+       })
 
         //delete my orders method--------------------
         app.delete("/chooseOffers/:id", async(req, res)=>{
